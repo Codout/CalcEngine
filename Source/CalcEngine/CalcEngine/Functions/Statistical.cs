@@ -9,8 +9,8 @@ namespace CalcEngine
         public static void Register(CalcEngine ce)
         {
             //ce.RegisterFunction("AVEDEV", AveDev, 1, int.MaxValue);
-            ce.RegisterFunction("AVERAGE", 1, int.MaxValue, Average);
-            ce.RegisterFunction("AVERAGEA", 1, int.MaxValue, AverageA);
+            ce.RegisterFunction("MEDIA", 1, int.MaxValue, Average);
+            ce.RegisterFunction("MEDIAA", 1, int.MaxValue, AverageA);
             //BETADIST	Returns the beta cumulative distribution function
             //BETAINV	Returns the inverse of the cumulative distribution function for a specified beta distribution
             //BINOMDIST	Returns the individual term binomial distribution probability
@@ -19,10 +19,10 @@ namespace CalcEngine
             //CHITEST	Returns the test for independence
             //CONFIDENCE	Returns the confidence interval for a population mean
             //CORREL	Returns the correlation coefficient between two data sets
-            ce.RegisterFunction("COUNT", 1, int.MaxValue, Count);
-            ce.RegisterFunction("COUNTA", 1, int.MaxValue, CountA);
-            ce.RegisterFunction("COUNTBLANK", 1, int.MaxValue, CountBlank);
-            ce.RegisterFunction("COUNTIF", 2, CountIf);
+            ce.RegisterFunction("CONTAR", 1, int.MaxValue, Count);
+            ce.RegisterFunction("CONTARA", 1, int.MaxValue, CountA);
+            ce.RegisterFunction("CONTARBRANCO", 1, int.MaxValue, CountBlank);
+            ce.RegisterFunction("CONTARSE", 2, CountIf);
             //COVAR	Returns covariance, the average of the products of paired deviations
             //CRITBINOM	Returns the smallest value for which the cumulative binomial distribution is less than or equal to a criterion value
             //DEVSQ	Returns the sum of squares of deviations
@@ -50,7 +50,7 @@ namespace CalcEngine
             //LOGNORMDIST	Returns the cumulative lognormal distribution
             ce.RegisterFunction("MAX", 1, int.MaxValue, Max);
             ce.RegisterFunction("MAXA", 1, int.MaxValue, MaxA);
-            ce.RegisterFunction("MEDIAN", 1, int.MaxValue, Median);
+            ce.RegisterFunction("MEDIANO", 1, int.MaxValue, Median);
             ce.RegisterFunction("MIN", 1, int.MaxValue, Min);
             ce.RegisterFunction("MINA", 1, int.MaxValue, MinA);
             //MODE	Returns the most common value in a data set
@@ -66,7 +66,7 @@ namespace CalcEngine
             //POISSON	Returns the Poisson distribution
             //PROB	Returns the probability that values in a range are between two limits
             //QUARTILE	Returns the quartile of a data set
-            ce.RegisterFunction("RANGE", 1, int.MaxValue, Range);
+            ce.RegisterFunction("INTERVALO", 1, int.MaxValue, Range);
             //RANK	Returns the rank of a number in a list of numbers
             //RSQ	Returns the square of the Pearson product moment correlation coefficient
             //SKEW	Returns the skewness of a distribution
@@ -99,10 +99,10 @@ namespace CalcEngine
 #if DEBUG
         public static void Test(CalcEngine ce)
         {
-            ce.Test("Average(1, 3, 3, 1, true, false, \"hello\")", 2.0);
-            ce.Test("AverageA(1, 3, 3, 1, true, false, \"hello\")", (1 + 3 + 3 + 1 + 1 + 0 + 0) / 7.0);
-            ce.Test("Count(1, 3, 3, 1, true, false, \"hello\")", 4.0);
-            ce.Test("CountA(1, 3, 3, 1, true, false, \"hello\")", 7.0);
+            ce.Test("Media(1, 3, 3, 1, verdadeiro, falso, \"hello\")", 2.0);
+            ce.Test("MediaA(1, 3, 3, 1, verdadeiro, falso, \"hello\")", (1 + 3 + 3 + 1 + 1 + 0 + 0) / 7.0);
+            ce.Test("Contar(1, 3, 3, 1, verdadeiro, falso, \"hello\")", 4.0);
+            ce.Test("ContarA(1, 3, 3, 1, verdadeiro, falso, \"hello\")", 7.0);
         }
 #endif
 

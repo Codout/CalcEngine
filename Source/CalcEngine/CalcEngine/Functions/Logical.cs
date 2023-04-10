@@ -6,30 +6,30 @@ namespace CalcEngine
     {
         public static void Register(CalcEngine ce)
         {
-            ce.RegisterFunction("AND", 1, int.MaxValue, And);
-            ce.RegisterFunction("OR", 1, int.MaxValue, Or);
-            ce.RegisterFunction("NOT", 1, Not);
-            ce.RegisterFunction("IF", 3, If);
-            ce.RegisterFunction("TRUE", 0, True);
-            ce.RegisterFunction("FALSE", 0, False);
+            ce.RegisterFunction("E", 1, int.MaxValue, And);
+            ce.RegisterFunction("OU", 1, int.MaxValue, Or);
+            ce.RegisterFunction("NAO", 1, Not);
+            ce.RegisterFunction("SE", 3, If);
+            ce.RegisterFunction("VERDADEIRO", 0, True);
+            ce.RegisterFunction("FALSO", 0, False);
         }
 #if DEBUG
         public static void Test(CalcEngine ce)
         {
-            ce.Test("AND(true, true)", true);
-            ce.Test("AND(true, false)", false);
-            ce.Test("AND(false, true)", false);
-            ce.Test("AND(false, false)", false);
-            ce.Test("OR(true, true)", true);
-            ce.Test("OR(true, false)", true);
-            ce.Test("OR(false, true)", true);
-            ce.Test("OR(false, false)", false);
-            ce.Test("NOT(false)", true);
-            ce.Test("NOT(true)", false);
-            ce.Test("IF(5 > 4, true, false)", true);
-            ce.Test("IF(5 > 14, true, false)", false);
-            ce.Test("TRUE()", true);
-            ce.Test("FALSE()", false);
+            ce.Test("E(Verdadeiro, Verdadeiro)", true);
+            ce.Test("E(Verdadeiro, Falso)", false);
+            ce.Test("E(Falso, Verdadeiro)", false);
+            ce.Test("E(Falso, Falso)", false);
+            ce.Test("OU(Verdadeiro, Verdadeiro)", true);
+            ce.Test("OU(Verdadeiro, Falso)", true);
+            ce.Test("OU(Falso, Verdadeiro)", true);
+            ce.Test("OU(Falso, Falso)", false);
+            ce.Test("NAO(Falso)", true);
+            ce.Test("NAO(Verdadeiro)", false);
+            ce.Test("SE(5 > 4, Verdadeiro, Falso)", true);
+            ce.Test("SE(5 > 14, Verdadeiro, Falso)", false);
+            ce.Test("VERDADEIRO()", true);
+            ce.Test("FALSO()", false);
         }
 #endif
         static object And(List<Expression> p)
