@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <Title>Codout.CalcEngine</Title>
     <PackageIcon>logo-nuget.png</PackageIcon>
+    <PackageId>Codout.CalcEngine</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
