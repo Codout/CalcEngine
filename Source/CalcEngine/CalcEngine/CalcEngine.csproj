@@ -6,6 +6,7 @@
     <Title>Codout.CalcEngine</Title>
     <PackageIcon>logo-nuget.png</PackageIcon>
     <PackageId>Codout.CalcEngine</PackageId>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

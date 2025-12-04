@@ -111,6 +111,67 @@ namespace CalcEngine
                 : Parse(expression);
 			return x.Evaluate();
 		}
+
+        /// <summary>
+        /// Retorna o conjunto de variáveis (identificadores não-função) usados na expressão.
+        /// </summary>
+        public IReadOnlyCollection<string> GetVariables(string expression)
+        {
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
+
+            var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            // snapshot do estado atual do parser para não interferir em outras chamadas
+            var oldExpr = _expr;
+            var oldLen = _len;
+            var oldPtr = _ptr;
+            var oldToken = _token;
+
+            try
+            {
+                _expr = expression;
+                _len = _expr.Length;
+                _ptr = 0;
+
+                // pular "=" inicial se vier em estilo Excel
+                if (_len > 0 && _expr[0] == '=')
+                {
+                    _ptr++;
+                }
+
+                while (true)
+                {
+                    GetToken();
+
+                    // fim da expressão
+                    if (_token.ID == TKID.END)
+                        break;
+
+                    // queremos apenas identificadores
+                    if (_token.Type == TKTYPE.IDENTIFIER)
+                    {
+                        var id = (string)_token.Value;
+
+                        // ignora funções registradas (SE, SOMA, etc.)
+                        if (_fnTbl != null && _fnTbl.ContainsKey(id))
+                            continue;
+
+                        result.Add(id);
+                    }
+                }
+            }
+            finally
+            {
+                // restaurar estado do parser
+                _expr = oldExpr;
+                _len = oldLen;
+                _ptr = oldPtr;
+                _token = oldToken;
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Gets or sets whether the calc engine should keep a cache with parsed
         /// expressions.
@@ -455,10 +516,10 @@ namespace CalcEngine
 			return x;
 		}
 
-		#endregion
+        #endregion
 
-		//---------------------------------------------------------------------------
-		#region ** parser
+        //---------------------------------------------------------------------------
+        #region ** parser
 
         void GetToken()
         {
